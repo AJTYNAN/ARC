@@ -42,4 +42,27 @@ When looking at a task, a test-taker has access to inputs & outputs of the demon
 
 
 ## Task Solutions
+Task 1 - A simple colour replacement
+
+Colours correspond to other colours and are simply translated to more colours.
+
 ![0d3d703e](https://github.com/AJTYNAN/ARC/blob/master/0d3d703e.png)
+
+Task 2 - Connecting two dots
+
+The aim of this task was to connect a red and a blue square with yellow squares.
+The connecting yellow squares are constrained vertically by the blue square and horizontally by the red square.
+
+![d4a91cb9](https://github.com/AJTYNAN/ARC/blob/master/d4a91cb9.png)
+
+Task 3 - Finding corners to populate a 2x2 grid
+
+This task contains a large grid with various corners placed randomly. The goal is to locate the corners and place them in a 2x2 grid in the corresponding corners.
+
+![a61ba2ce](https://github.com/AJTYNAN/ARC/blob/master/a61ba2ce.png)
+
+Task 4 - Finishing the pattern
+
+This task presents a pattern with various sections missing. The goal is to complete the pattern by filling in the missing sections.
+
+![c3f564a4](https://github.com/AJTYNAN/ARC/blob/master/c3f564a4.png)

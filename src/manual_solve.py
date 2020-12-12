@@ -4,21 +4,15 @@
 #16394923
 #https://github.com/AJTYNAN/ARC
 
-
 import os, sys
 import json
 import numpy as np
 import re
 
-### YOUR CODE HERE: write at least three functions which solve
-### specific tasks by transforming the input x and returning the
-### result. Name them according to the task ID as in the three
-### examples below. Delete the three examples. The tasks you choose
-### must be in the data/training directory, not data/evaluation.
-
 #0d3d703e.json replace colours
 #d4a91cb9.json draw a line between two points with verticality/horizontality contraints
 #c3f564a4.json find the repeated pattern and finish it
+#a61ba2ce.json find corner shapes in a 13x13 grid and place in a 4x4 grid
 
 def solve_0d3d703e(x):
     #Relpace each colour with the corresponding colour
@@ -107,14 +101,57 @@ def solve_d4a91cb9(x):
                     y[loc2[0],yloc]=4          
     return y
 
+def solve_a61ba2ce(x):
+    y=np.zeros([4,4])
+    #tetris shapes to fit into a 4x4 grid
+    #search for 2x2 blocks in form 
+    #[x,0],     [0,x],   [x,x],   [x,x]
+    #[x,x],     [x,x],   [x,0],   [0,x]
+    #Need to search array in a 2x2 block looking for entries with one zero
+    for j in range(0,12):
+        for i in range(0,12):
+            row1 = [x[i,j],x[i+1,j]]
+            row2 = [x[i,j+1],x[i+1,j+1]]
+            block = [row1,row2]
+            #If a block has 3 non-zero numbers it is a tertris block
+            if np.count_nonzero(block) == 3:
+                #   [0,x]
+                #   [x,x]
+                if block[0][0] == 0:
+                    y[2,2] = block[0][0]
+                    y[2,3] = block[0][1]
+                    y[3,2] = block[1][0]
+                    y[3,3] = block[1][1]
+                #   [x,0]
+                #   [x,x]
+                if block[0][1] == 0:
+                    y[0,2] = block[0][0]
+                    y[0,3] = block[1][0]
+                    y[1,2] = block[0][1]
+                    y[1,3] = block[1][1]
+                #   [x,x]
+                #   [0,x]   
+                if block[1][0] == 0:
+                    y[2,0] = block[0][0]
+                    y[2,1] = block[1][0]
+                    y[3,0] = block[0][1]
+                    y[3,1] = block[1][1]
+                #   [x,x]
+                #   [x,0]
+                if block[1][1] == 0:
+                    y[0,0] = block[0][0]
+                    y[0,1] = block[0][1]
+                    y[1,0] = block[1][0]
+                    y[1,1] = block[1][1]    
+    return y
+
 def solve_c3f564a4(x):
     y=x.copy()
     length = np.shape(y)
     #need to find a row with no 0's
-    #Can then use that row to find what comes next by checking the cell to the left or right
+    #Can then use that row to find what comes next by checking the cell to the left
     #If blank cell, check cell to the left, if thats blank check cell to the right, if blank keep moving until a non blank is found
-    #if blank cell and cell to left = number find number in row and change blank cell to next number
-    #if blank cell and cell to right = number, find number in row and change blank cell to previous number
+    #if blank cell and cell to left = number find number in row and change blank cell to next number in pattern
     pattern = []
     for row in y:
         flag = 0
@@ -134,51 +171,9 @@ def solve_c3f564a4(x):
                             y[i,j] = pattern[num+1]
     return y
 
-def solve_a61ba2ce(x):
-    y=np.zeros([4,4])
-    #tetris shapes to fit into a 4x4 grid
-    #search for 2x2 blocks in form 
-    #[x,0],     [0,x],   [x,x],   [x,x]
-    #[x,x],     [x,x],   [x,0],   [0,x]
-    #Need to search array in a 2x2 block looking for entries with one zero
-    #search through x = [0-11][0-11] in [x,x+1][x,x+1]
-    for j in range(0,12):
-        for i in range(0,12):
-            row1 = [x[i,j],x[i+1,j]]
-            row2 = [x[i,j+1],x[i+1,j+1]]
-            block = [row1,row2]
-            if np.count_nonzero(block) == 3:
-                if block[0][0] == 0:
-                    y[2,2] = block[0][0]
-                    y[2,3] = block[0][1]
-                    y[3,2] = block[1][0]
-                    y[3,3] = block[1][1]
-                if block[1][0] == 0:
-                    y[2,0] = block[0][0]
-                    y[2,1] = block[1][0]
-                    y[3,0] = block[0][1]
-                    y[3,1] = block[1][1]
-                if block[0][1] == 0:
-                    y[0,2] = block[0][0]
-                    y[0,3] = block[1][0]
-                    y[1,2] = block[0][1]
-                    y[1,3] = block[1][1]
-                if block[1][1] == 0:
-                    y[0,0] = block[0][0]
-                    y[0,1] = block[0][1]
-                    y[1,0] = block[1][0]
-                    y[1,1] = block[1][1]
-   
-    #When an entry with 3 non-zero digits create an array for it
-    #with all 4 arrays, put them into a 2x2 based on the zero locations
-    
-    return y
-
-
 def main():
     # Find all the functions defined in this file whose names are
     # like solve_abcd1234(), and run them.
-
     # regex to match solve_* functions and extract task IDs
     p = r"solve_([a-f0-9]{8})" 
     tasks_solvers = []
