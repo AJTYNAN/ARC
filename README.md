@@ -4,7 +4,7 @@
 
 For this assignment we were required to code solutions for the Abstraction and Reasoning Corpus available at: https://github.com/fchollet/ARC
 
-This repository contains my solutions for 3 of the ARC problems.
+This repository contains my solutions for 4 of the ARC problems.
 
 
 
@@ -42,27 +42,42 @@ When looking at a task, a test-taker has access to inputs & outputs of the demon
 
 
 ## Task Solutions
-Task 1 - A simple colour replacement
+#Task 1 [0d3d703e] - A simple colour replacement
 
 Colours correspond to other colours and are simply translated to more colours.
 
 ![0d3d703e](https://github.com/AJTYNAN/ARC/blob/master/0d3d703e.png)
 
-Task 2 - Connecting two dots
+The solution was to loop through the entries and replace each digit to match the corresponding colours.
+
+#Task 2 [d4a91cb9] - Connecting two dots
 
 The aim of this task was to connect a red and a blue square with yellow squares.
 The connecting yellow squares are constrained vertically by the blue square and horizontally by the red square.
 
 ![d4a91cb9](https://github.com/AJTYNAN/ARC/blob/master/d4a91cb9.png)
 
-Task 3 - Finding corners to populate a 2x2 grid
+The solution was to search the array for the locations of the blue and red squares. Then use the locations to draw a vertical line by comparing the y co-ordinates of the two squares, the line moves upwards if the red square is above the blue square or downwards if the blue square is above the red square.
+The same thing happens for the horizontal constraint by comparing the horizontal locations of the two squares to go left and right.
+
+#Task 3 [a61ba2ce] - Finding corners to populate a 4x4 grid
 
 This task contains a large grid with various corners placed randomly. The goal is to locate the corners and place them in a 2x2 grid in the corresponding corners.
 
 ![a61ba2ce](https://github.com/AJTYNAN/ARC/blob/master/a61ba2ce.png)
 
-Task 4 - Finishing the pattern
+To solve this task the function loops through the large array in 2x2 blocks.
+These blocks search in the form:
+`[x[i,j],x[i+1,j]]`
+`[x[i,j+1],x[i+1,j+1]]`
+
+When a block with one non-zero number appears, check the location of the zero and populate the corner into the appropriate location in the 4x4 grid.
+
+#Task 4 [c3f564a4] - Finishing the pattern
 
 This task presents a pattern with various sections missing. The goal is to complete the pattern by filling in the missing sections.
 
 ![c3f564a4](https://github.com/AJTYNAN/ARC/blob/master/c3f564a4.png)
+
+The function to solve this task begins by searching for a row that doesn't have a missing section. From the row the pattern can be extracted.
+The program then loops through the array searching for any missing sections, if a missing piece is found check the location next to it. If the location next to it is not missing, use that location to fill in the missing section from the extracted pattern.
