@@ -11,8 +11,8 @@ import re
 
 #0d3d703e.json replace colours
 #d4a91cb9.json draw a line between two points with verticality/horizontality contraints
-#c3f564a4.json find the repeated pattern and finish it
 #a61ba2ce.json find corner shapes in a 13x13 grid and place in a 4x4 grid
+#c3f564a4.json find the repeated pattern and finish it
 
 def solve_0d3d703e(x):
     #Relpace each colour with the corresponding colour
@@ -149,9 +149,6 @@ def solve_c3f564a4(x):
     y=x.copy()
     length = np.shape(y)
     #need to find a row with no 0's
-    #Can then use that row to find what comes next by checking the cell to the left
-    #If blank cell, check cell to the left, if thats blank check cell to the right, if blank keep moving until a non blank is found
-    #if blank cell and cell to left = number find number in row and change blank cell to next number in pattern
     pattern = []
     for row in y:
         flag = 0
@@ -160,6 +157,8 @@ def solve_c3f564a4(x):
                 flag=1
         if flag == 0:
             pattern = row
+    #Can then use that row to find what comes next by checking the cell to the left of the missing section
+    #if blank cell and cell to left = number find number in row and change blank cell to next number in pattern
     for i in range(0,length[0]):
         for j in range(0,length[1]):
             if y[i,j] == 0:
