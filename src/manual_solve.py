@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+#Aidan Tynan
+#16394923
+#https://github.com/AJTYNAN/ARC
+
+
 import os, sys
 import json
 import numpy as np
