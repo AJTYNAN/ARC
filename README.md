@@ -42,4 +42,4 @@ When looking at a task, a test-taker has access to inputs & outputs of the demon
 
 
 ## Task Solutions
-![alt text](https://github.com/AJTYNAN/ARC/blob/master/data/0d3d703e.png>raw=true)
+![0d3d703e](https://github.com/AJTYNAN/ARC/blob/master/0d3d703e.png>raw=true)
