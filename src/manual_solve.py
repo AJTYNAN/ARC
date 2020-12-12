@@ -134,6 +134,45 @@ def solve_c3f564a4(x):
                             y[i,j] = pattern[num+1]
     return y
 
+def solve_a61ba2ce(x):
+    y=np.zeros([4,4])
+    #tetris shapes to fit into a 4x4 grid
+    #search for 2x2 blocks in form 
+    #[x,0],     [0,x],   [x,x],   [x,x]
+    #[x,x],     [x,x],   [x,0],   [0,x]
+    #Need to search array in a 2x2 block looking for entries with one zero
+    #search through x = [0-11][0-11] in [x,x+1][x,x+1]
+    for j in range(0,12):
+        for i in range(0,12):
+            row1 = [x[i,j],x[i+1,j]]
+            row2 = [x[i,j+1],x[i+1,j+1]]
+            block = [row1,row2]
+            if np.count_nonzero(block) == 3:
+                if block[0][0] == 0:
+                    y[2,2] = block[0][0]
+                    y[2,3] = block[0][1]
+                    y[3,2] = block[1][0]
+                    y[3,3] = block[1][1]
+                if block[1][0] == 0:
+                    y[2,0] = block[0][0]
+                    y[2,1] = block[1][0]
+                    y[3,0] = block[0][1]
+                    y[3,1] = block[1][1]
+                if block[0][1] == 0:
+                    y[0,2] = block[0][0]
+                    y[0,3] = block[1][0]
+                    y[1,2] = block[0][1]
+                    y[1,3] = block[1][1]
+                if block[1][1] == 0:
+                    y[0,0] = block[0][0]
+                    y[0,1] = block[0][1]
+                    y[1,0] = block[1][0]
+                    y[1,1] = block[1][1]
+   
+    #When an entry with 3 non-zero digits create an array for it
+    #with all 4 arrays, put them into a 2x2 based on the zero locations
+    
+    return y
 
 
 def main():
