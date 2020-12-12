@@ -41,8 +41,8 @@ A "grid" is a rectangular matrix (list of lists) of integers between 0 and 9 (in
 When looking at a task, a test-taker has access to inputs & outputs of the demonstration pairs, plus the input(s) of the test pair(s). The goal is to construct the output grid(s) corresponding to the test input grid(s), using 3 trials for each test input. "Constructing the output grid" involves picking the height and width of the output grid, then filling each cell in the grid with a symbol (integer between 0 and 9, which are visualized as colors). Only *exact* solutions (all cells match the expected answer) can be said to be correct.
 
 
-## Task Solutions
-# Task 1 [0d3d703e] - A simple colour replacement
+# Task Solutions
+## Task 1 [0d3d703e] - A simple colour replacement
 
 Colours correspond to other colours and are simply translated to more colours.
 
@@ -50,7 +50,7 @@ Colours correspond to other colours and are simply translated to more colours.
 
 The solution was to loop through the entries and replace each digit to match the corresponding colours.
 
-# Task 2 [d4a91cb9] - Connecting two dots
+## Task 2 [d4a91cb9] - Connecting two dots
 
 The aim of this task was to connect a red and a blue square with yellow squares.
 The connecting yellow squares are constrained vertically by the blue square and horizontally by the red square.
@@ -60,7 +60,7 @@ The connecting yellow squares are constrained vertically by the blue square and 
 The solution was to search the array for the locations of the blue and red squares. Then use the locations to draw a vertical line by comparing the y co-ordinates of the two squares, the line moves upwards if the red square is above the blue square or downwards if the blue square is above the red square.
 The same thing happens for the horizontal constraint by comparing the horizontal locations of the two squares to go left and right.
 
-# Task 3 [a61ba2ce] - Finding corners to populate a 4x4 grid
+## Task 3 [a61ba2ce] - Finding corners to populate a 4x4 grid
 
 This task contains a large grid with various corners placed randomly. The goal is to locate the corners and place them in a 2x2 grid in the corresponding corners.
 
@@ -73,7 +73,7 @@ These blocks search in the form:
 
 When a block with one non-zero number appears, check the location of the zero and populate the corner into the appropriate location in the 4x4 grid.
 
-# Task 4 [c3f564a4] - Finishing the pattern
+## Task 4 [c3f564a4] - Finishing the pattern
 
 This task presents a pattern with various sections missing. The goal is to complete the pattern by filling in the missing sections.
 
