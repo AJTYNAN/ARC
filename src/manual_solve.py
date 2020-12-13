@@ -36,9 +36,16 @@ def solve_0d3d703e(x):
                     y[i,j] = 9
             elif y[i,j] == 9:
                     y[i,j] = 8
+    #Solve works by looping through each element in the array
+    #And then replacing each colour with the corresponding colour
+    
+    #All training and test grids are solved correctly
     return y
 
 def solve_d4a91cb9(x):
+    #The aim of this task was to connect a red and a blue square with yellow squares. 
+    #The connecting yellow squares are constrained vertically by the blue square and horizontally by the red square.
+    
     #Find instance of 8
     #Find instance of 2
     #Draw a vertical line from 8
@@ -55,7 +62,7 @@ def solve_d4a91cb9(x):
             posx+=1
         posy+=1
     #To go up or down must compare y coordinate of 8 location against y coordinate of 2 location
-    if loc[0] < loc2[0]: #If 8 appears closer to the top of the grid, inputs must move downwards
+    if loc[0] < loc2[0]: #If 8 appears closer to the top of the grid than 2, inputs must move downwards
         num = loc2[0] - loc[0]
         xloc = loc[0]
         for i in range(0,num):
@@ -98,7 +105,8 @@ def solve_d4a91cb9(x):
             for i in range(0,num2-1):
                 if loc[1] > loc2[1]:
                     yloc = yloc -1
-                    y[loc2[0],yloc]=4          
+                    y[loc2[0],yloc]=4    
+    #All training and test grids solved correctly
     return y
 
 def solve_a61ba2ce(x):
@@ -143,9 +151,12 @@ def solve_a61ba2ce(x):
                     y[0,1] = block[0][1]
                     y[1,0] = block[1][0]
                     y[1,1] = block[1][1]    
+    #All test and training grids solved correctly
     return y
 
 def solve_c3f564a4(x):
+    #This task presents a pattern with various sections missing. 
+    #The goal is to complete the pattern by filling in the missing sections.
     y=x.copy()
     length = np.shape(y)
     #need to find a row with no 0's
@@ -168,7 +179,27 @@ def solve_c3f564a4(x):
                     for num in range(0,len(pattern)-1):
                         if pattern[num] == numToFind:
                             y[i,j] = pattern[num+1]
+    #All test and training grids solved correctly
     return y
+
+#All solutions to these problems use numpy and basic python libraries
+#There are a number of different types of problems in the Abstract Reasoning Corpus.
+#These include simple geometric & translation problems, pattern extraction and completion, ranging from simple to complex and a myriad of other problems
+#Patterns can be simple number translation & object colouring or they can be more complex requiring multiple criteria to be met.
+#Complex problems can require cleaning of noise or resizing of the output grid. 
+#
+#I chose 4 unique problems and as such each solve method is different
+#Despite their differences each method relies heavily on using numpy to manipulate the arrays
+#They all loop through the arrays however depending on the task they perform differenct functions
+#For the simple translation it simply replaces each colour with the corresponding one
+#For the second task it loops through the array and compares locations of two squares to draw a line between them
+#The third task searches a large array by looping in 2x2 sections searching for a block with 3 non-zero numbers
+#It then places the block accordingly based on the location of the zero in the block.
+#The final task which is to finish a pattern loops through the array finding a row without a missing section
+#The row found can then be used to complete the pattern checking missing pieces and their neighbours to finish the pattern
+#The disadvantage of this method is if there is repeated values in the pattern 
+#(e.g. 1,2,1,3, the program would fail to identify if a 3 or a 3 is supposed to follow a 1)  
+#All solve methods passed all testing and training grids
 
 def main():
     # Find all the functions defined in this file whose names are

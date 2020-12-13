@@ -33,6 +33,7 @@ This task contains a large grid with various corners placed randomly. The goal i
 
 To solve this task the function loops through the large array in 2x2 blocks.
 These blocks search in the form:
+
 `[x[i,j],x[i+1,j]]`
 
 `[x[i,j+1],x[i+1,j+1]]`
